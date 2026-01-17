@@ -1,0 +1,214 @@
+body {
+  font-family: Poppins, Arial, sans-serif;
+  background: linear-gradient(135deg, #eef2ff, #fdf6ff);
+  margin: 0;
+  padding: 20px;
+  color: #333;
+}
+
+.hidden {
+  display: none;
+}
+
+#auth, #app {
+  max-width: 600px;
+  margin: auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+input, textarea, select, button {
+  width: 100%;
+  margin: 6px 0;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background: #7b8cff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+section {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  margin-top: 15px;
+}
+
+.need, .gratitude {
+  border-left: 4px solid #7b8cff;
+  padding: 10px;
+  margin-top: 10px;
+  background: #f9f9ff;
+}
+
+.reply {
+  margin-top: 6px;
+  font-size: 0.9em;
+  color: #555;
+}
+/* ===== AURA VISUELLE ===== */
+.aura {
+  padding: 10px;
+  border-radius: 12px;
+  transition: all 0.4s ease;
+}
+
+.aura.novice {
+  background: #f0f0f0;
+  border-left: 6px solid #bdbdbd;
+}
+
+.aura.bienveillant {
+  background: #eef4ff;
+  border-left: 6px solid #5c7cfa;
+}
+
+.aura.ange {
+  background: #f5edff;
+  border-left: 6px solid #9b5de5;
+}
+
+/* ===== NOTIFICATION DOUCE ===== */
+.notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #5c7cfa;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 20px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  font-size: 14px;
+  opacity: 0;
+  transition: all 0.4s ease;
+  z-index: 999;
+}
+
+.notification.show {
+  opacity: 1;
+}
+
+.hidden {
+  display: none;
+}
+/* ===== MODE NUIT ZEN ===== */
+
+body.dark {
+  background: #0f172a;
+  color: #e5e7eb;
+}
+
+body.dark .card {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+body.dark input,
+body.dark textarea,
+body.dark select {
+  background: #020617;
+  color: #e5e7eb;
+  border-color: #334155;
+}
+
+body.dark button {
+  box-shadow: none;
+}
+
+body.dark .reply {
+  background: #020617;
+}
+
+body.dark .need {
+  background: #020617;
+}
+
+/* transition douce */
+body {
+  transition: background 0.6s ease, color 0.6s ease;
+}
+/* ===== HISTORIQUE PERSONNEL ===== */
+
+function getHistorique() {
+  return JSON.parse(localStorage.getItem("sk_historique") || "[]");
+}
+
+function ajouterHistorique(action) {
+  const hist = getHistorique();
+  hist.push({
+    action,
+    date: new Date().toLocaleString()
+  });
+  localStorage.setItem("sk_historique", JSON.stringify(hist));
+}
+function voirHistorique() {
+  const hist = getHistorique();
+  if (hist.length === 0) {
+    alert("🌱 Ton parcours est encore vide");
+    return;
+  }
+
+  let texte = "🧬 Ton parcours invisible\n\n";
+  hist.forEach(h => {
+    texte += "• " + h.action + " — " + h.date + "\n";
+  });
+
+  alert(texte);
+}
+.aura-ring {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 10px auto;
+  transition: box-shadow 1s ease, background 1s ease;
+}
+
+.aura-novice {
+  background: rgba(180, 200, 255, 0.3);
+  box-shadow: 0 0 6px rgba(180, 200, 255, 0.4);
+}
+
+.aura-bienveillant {
+  background: rgba(160, 130, 255, 0.35);
+  box-shadow: 0 0 12px rgba(160, 130, 255, 0.6);
+}
+
+.aura-lumineux {
+  background: rgba(255, 220, 150, 0.4);
+  box-shadow: 0 0 18px rgba(255, 220, 150, 0.8);
+}
+
+.aura-ange {
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 1);
+}
+.besoin-mal {
+  background: #1f2933;
+  color: #e5e7eb;
+  border-left: 4px solid #7c3aed;
+}
+
+.besoin-mal .appel {
+  font-size: 13px;
+  opacity: 0.8;
+  margin-top: 6px;
+  font-style: italic;
+}
